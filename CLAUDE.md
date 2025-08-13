@@ -73,7 +73,7 @@ make run-example    # Run with testdata examples in dry-run mode
 - Group names have trailing separators trimmed
 
 **Regex Patterns:**
-- Numeric pattern: `^(.+?)[-_.\s]*(\d{2,})$` (requires 2+ digits)
+- Numeric pattern: `^(.+?)[-_.\s]*(\d+)$` (requires 1+ digits)
 - Prefix boundary checking when no separator present
 - Escaped prefix strings to handle special regex characters
 

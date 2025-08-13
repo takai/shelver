@@ -6,7 +6,7 @@
 
 ## Features
 
-- **Automatic grouping** by trailing numeric sequences (2+ digits)
+- **Automatic grouping** by trailing numeric sequences (1+ digits)
 - **Prefix-based grouping** with user-specified prefixes
 - **Dry-run mode** to preview changes before execution
 - **Smart conflict handling** with overwrite behavior (like `mv`)
@@ -83,15 +83,15 @@ shelver [OPTIONS] <file/glob>...
 **Basic numeric grouping:**
 ```bash
 shelver *.wav
-# Input:  album-001.wav, album-002.wav
-# Output: album/album-001.wav, album/album-002.wav
+# Input:  album-1.wav, album-2.wav, album-001.wav
+# Output: album/album-1.wav, album/album-2.wav, album/album-001.wav
 ```
 
 **Prefix-based grouping:**
 ```bash
 shelver --prefix p *.jpg
-# Input:  vacation p01.jpg, vacation p02.jpg
-# Output: vacation/vacation p01.jpg, vacation/vacation p02.jpg
+# Input:  vacation p1.jpg, vacation p2.jpg
+# Output: vacation/vacation p1.jpg, vacation/vacation p2.jpg
 ```
 
 **Custom destination:**
@@ -113,20 +113,20 @@ shelver --dryrun --prefix page *.pdf
 ```bash
 # Before
 ls
-# kyoto-trip p01.jpg  kyoto-trip p02.jpg  kyoto-trip p03.jpg
-# tokyo p01.jpg       tokyo p02.jpg
+# kyoto-trip p1.jpg  kyoto-trip p2.jpg  kyoto-trip p3.jpg
+# tokyo p1.jpg       tokyo p2.jpg
 
 shelver --prefix p *.jpg
 
 # After
 ls
 # kyoto-trip/
-#   kyoto-trip p01.jpg
-#   kyoto-trip p02.jpg
-#   kyoto-trip p03.jpg
+#   kyoto-trip p1.jpg
+#   kyoto-trip p2.jpg
+#   kyoto-trip p3.jpg
 # tokyo/
-#   tokyo p01.jpg
-#   tokyo p02.jpg
+#   tokyo p1.jpg
+#   tokyo p2.jpg
 ```
 
 ### Organizing Music Files
@@ -134,28 +134,28 @@ ls
 ```bash
 # Before
 ls
-# album-001.wav  album-002.wav  album-003.wav
-# mixtape-01.wav mixtape-02.wav
+# album-1.wav  album-2.wav  album-3.wav
+# mixtape-1.wav mixtape-2.wav
 
 shelver *.wav
 
 # After
 ls
 # album/
-#   album-001.wav
-#   album-002.wav
-#   album-003.wav
+#   album-1.wav
+#   album-2.wav
+#   album-3.wav
 # mixtape/
-#   mixtape-01.wav
-#   mixtape-02.wav
+#   mixtape-1.wav
+#   mixtape-2.wav
 ```
 
 ### Preview Mode
 
 ```bash
 shelver --dryrun *.pdf
-# [DRYRUN] report-001.pdf -> report/report-001.pdf
-# [DRYRUN] report-002.pdf -> report/report-002.pdf
+# [DRYRUN] report-1.pdf -> report/report-1.pdf
+# [DRYRUN] report-2.pdf -> report/report-2.pdf
 # [DRYRUN] manual-v2.pdf -> manual/manual-v2.pdf
 #
 # Dry run complete. Would move 3 files.

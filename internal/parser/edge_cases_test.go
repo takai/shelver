@@ -89,6 +89,27 @@ func TestParseGroup_EdgeCases(t *testing.T) {
 			want:     "test",
 			wantOK:   true,
 		},
+		{
+			name:     "single digit only",
+			filename: "7.txt",
+			prefix:   "",
+			want:     "",
+			wantOK:   false,
+		},
+		{
+			name:     "single character with single digit",
+			filename: "x9.txt",
+			prefix:   "",
+			want:     "x",
+			wantOK:   true,
+		},
+		{
+			name:     "single digit with prefix",
+			filename: "test p5.txt",
+			prefix:   "p",
+			want:     "test",
+			wantOK:   true,
+		},
 	}
 
 	for _, tt := range tests {

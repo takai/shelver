@@ -7,7 +7,7 @@ import (
 )
 
 var (
-	numericPattern   = regexp.MustCompile(`^(.+?)[-_.\s]*(\d{2,})$`)
+	numericPattern   = regexp.MustCompile(`^(.+?)[-_.\s]*(\d+)$`)
 	separatorPattern = regexp.MustCompile(`[-_.\s]+$`)
 )
 
@@ -42,7 +42,7 @@ func tryNumericForm(stem string) (string, bool) {
 func tryPrefixForm(stem, prefix string) (string, bool) {
 	escapedPrefix := regexp.QuoteMeta(prefix)
 
-	pattern := regexp.MustCompile(`^(.+?)([-_.\s]?)` + escapedPrefix + `(\d{2,})`)
+	pattern := regexp.MustCompile(`^(.+?)([-_.\s]?)` + escapedPrefix + `(\d+)`)
 	matches := pattern.FindStringSubmatch(stem)
 	if len(matches) != 4 {
 		return "", false

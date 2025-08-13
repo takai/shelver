@@ -27,11 +27,11 @@ func TestParseGroup_NumericOnly(t *testing.T) {
 			wantOK:   true,
 		},
 		{
-			name:     "single digit should not match",
+			name:     "single digit should match",
 			filename: "album-1.wav",
 			prefix:   "",
-			want:     "",
-			wantOK:   false,
+			want:     "album",
+			wantOK:   true,
 		},
 		{
 			name:     "underscore separator",
@@ -80,6 +80,27 @@ func TestParseGroup_NumericOnly(t *testing.T) {
 			filename: "my photo album 99.jpg",
 			prefix:   "",
 			want:     "my photo album",
+			wantOK:   true,
+		},
+		{
+			name:     "single digit with dash",
+			filename: "song-5.mp3",
+			prefix:   "",
+			want:     "song",
+			wantOK:   true,
+		},
+		{
+			name:     "single digit with underscore",
+			filename: "file_7.txt",
+			prefix:   "",
+			want:     "file",
+			wantOK:   true,
+		},
+		{
+			name:     "single digit with dot",
+			filename: "image.9.jpg",
+			prefix:   "",
+			want:     "image",
 			wantOK:   true,
 		},
 	}
@@ -177,11 +198,25 @@ func TestParseGroup_PrefixBased(t *testing.T) {
 			wantOK:   true,
 		},
 		{
-			name:     "single digit after prefix should not match",
+			name:     "single digit after prefix should match",
 			filename: "album p1.wav",
 			prefix:   "p",
-			want:     "",
-			wantOK:   false,
+			want:     "album",
+			wantOK:   true,
+		},
+		{
+			name:     "single digit prefix with underscore",
+			filename: "data_x2.csv",
+			prefix:   "x",
+			want:     "data",
+			wantOK:   true,
+		},
+		{
+			name:     "single digit prefix with dash",
+			filename: "report-v3.pdf",
+			prefix:   "v",
+			want:     "report",
+			wantOK:   true,
 		},
 	}
 
