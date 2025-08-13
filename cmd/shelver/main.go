@@ -11,9 +11,9 @@ import (
 
 func main() {
 	var (
-		prefix  = flag.String("prefix", "", "Group files by text before the specified prefix")
-		dest    = flag.String("dest", ".", "Destination root directory")
-		dryRun  = flag.Bool("dryrun", false, "Show planned moves without executing")
+		prefix = flag.String("prefix", "", "Group files by text before the specified prefix")
+		dest   = flag.String("dest", ".", "Destination root directory")
+		dryRun = flag.Bool("dryrun", false, "Show planned moves without executing")
 	)
 	flag.Parse()
 
